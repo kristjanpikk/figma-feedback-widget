@@ -21,7 +21,12 @@ function FeedbackWidget() {
     const [error, setError] = useSyncedState('error', '');
     const urlRegex = new RegExp("^(?:(?:http(?:s)?|ftp)://)(?:\\S+(?::(?:\\S)*)?@)?(?:(?:[a-z0-9\u00a1-\uffff](?:-)*)*(?:[a-z0-9\u00a1-\uffff])+)(?:\\.(?:[a-z0-9\u00a1-\uffff](?:-)*)*(?:[a-z0-9\u00a1-\uffff])+)*(?:\\.(?:[a-z0-9\u00a1-\uffff]){2,})(?::(?:\\d){2,5})?(?:/(?:\\S)*)?$");
     useEffect(() => {
-        origin = figma.currentPage.parent.name + ' / ' + figma.currentPage.name;
+        if (figma.editorType === 'figjam') {
+            origin = figma.currentPage.parent.name;
+        }
+        else {
+            origin = figma.currentPage.parent.name + ' / ' + figma.currentPage.name;
+        }
         figma.ui.onmessage = (response) => __awaiter(this, void 0, void 0, function* () {
             if (response.type === 'success') {
                 figma.notify('Feedback sent, thank you!');

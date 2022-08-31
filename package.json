@@ -1,16 +1,18 @@
 {
-  "name": "Feedback-Widget",
+  "name": "figma-feedback-widget",
   "version": "1.0.0",
-  "description": "Your Figma widget",
+  "description": "A widget for collecting feedback directly from canvas.",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "watch": "npm run build -- --watch"
+    "dev": "npm run build -- --watch"
   },
-  "author": "",
-  "license": "",
+  "author": "Kristjan Pikk",
+  "license": "MIT License",
+  "dependencies": {
+    "typescript": "*"
+  },
   "devDependencies": {
     "@figma/plugin-typings": "*",
-    "@figma/widget-typings": "*",
-    "typescript": "*"
+    "@figma/widget-typings": "*"
   }
 }
