@@ -1,0 +1,27 @@
+<script>
+onmessage = async (event) => {  
+  const request = new XMLHttpRequest()
+  const data = {
+    'date': new Date().toISOString(),
+    'origin': event.data.pluginMessage.origin,
+    'feedback': event.data.pluginMessage.feedback,
+    'comment': event.data.pluginMessage.comment,
+  }
+
+  request.open('POST', event.data.pluginMessage.url);
+  request.setRequestHeader('Content-Type', 'application/json');
+  request.send(JSON.stringify(data))
+
+  request.onload = function() {
+    if (request.status != 200) {
+      parent.postMessage({ pluginMessage: { type: 'requestError' } }, '*')
+    } else {
+      parent.postMessage({ pluginMessage: { type: 'success' } }, '*')
+    }
+  }
+
+  request.onerror = function() {
+    parent.postMessage({ pluginMessage: { type: 'urlError' } }, '*')
+  }
+}
+</script>
