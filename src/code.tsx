@@ -165,11 +165,13 @@ function FeedbackWidget() {
       setError('')
       figma.showUI(__html__, { visible: false })
       figma.ui.postMessage({
+        data: {
+          date: new Date().toISOString(),
+          feedback: feedback,
+          comment: comment,
+          origin: origin,
+        }, 
         url: url,
-        feedback: feedback,
-        comment: comment,
-        origin: origin,
-        //dateFormat: dateFormat,
       })
     })
   }

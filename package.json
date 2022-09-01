@@ -3,16 +3,17 @@
   "version": "1.0.0",
   "description": "A widget for collecting feedback directly from canvas.",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "dev": "npm run build -- --watch"
+    "test": "tsc -p src --noEmit",
+    "build": "esbuild src/code.tsx --bundle --outfile=dist/code.js",
+    "dev": "concurrently -n tsc,build 'npm run test -- --preserveWatchOutput --watch' 'npm run build -- --watch'"
   },
   "author": "Kristjan Pikk",
   "license": "MIT License",
-  "dependencies": {
-    "typescript": "*"
-  },
   "devDependencies": {
     "@figma/plugin-typings": "*",
-    "@figma/widget-typings": "*"
+    "@figma/widget-typings": "*",
+    "typescript": "*",
+    "concurrently": "^6.3.0",
+    "esbuild": "^0.13.5"
   }
 }
