@@ -9,5 +9,5 @@
   "containsWidget": true,
   "widgetApi": "1.0.0",
   "main": "dist/code.js",
-  "ui": "ui.html"
+  "ui": "src/ui.html"
 }
